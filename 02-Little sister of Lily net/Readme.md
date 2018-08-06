@@ -26,6 +26,6 @@
 #### 爱情宣言词云
 小姐姐理想中的另一半要求积极、阳光、有责任心、善良、旅游、相扶相持、自信等等；\
 小姐姐也表明了自己的渴望：盼望找到爱的人，一直努力寻找，快快出现，期待你的出现；\
-![image](https://github.com/Damon0626/My-Projects/blob/master/02-Little%20sister%20of%20Lily%20net/wc.jpg
+![image](https://github.com/Damon0626/My-Projects/blob/master/02-Little%20sister%20of%20Lily%20net/wc.jpg)
 ### 最后
 爱情还是需要两情相悦，看对了眼，一切真的好说，不喜欢还真是得花心思，得之则幸，不得则命。希望广大的男同胞成长为积极、阳光、自信、有责任心的男人，不管小姐姐还是小哥哥都早日找到属于自己的那个Ta。
