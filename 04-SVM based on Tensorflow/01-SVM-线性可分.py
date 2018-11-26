@@ -22,10 +22,10 @@ class SVM(object):
 		cluster2 = (np.random.randn(size, n_dim) + center2) * scale
 
 		x_data = np.vstack((cluster1, cluster2)).astype(np.float32)
-		y_data = np.array([1]*size+[-1]*size)
+		y_data = np.array([1]*size+[-1]*size)  # (400, )
 		indices = np.random.permutation(size*2)  # 随机置换一个序列，随机400个位置
 		x_data, y_data = x_data[indices], y_data[indices]
-		y_data = np.reshape(y_data, (y_data.shape[0], 1))   # 400*1
+		y_data = np.reshape(y_data, (y_data.shape[0], 1))   # (400, 1)
 
 		if not one_hot:
 			return x_data, y_data
@@ -49,7 +49,7 @@ class SVM(object):
 		cost = tf.nn.l2_loss(w) + tf.reduce_sum(tf.maximum(1-self.y*self.y_pred, 0))
 		train_step = tf.train.AdamOptimizer(0.01).minimize(cost)
 
-		self.y_predict = tf.sign(tf.matmul(self.x, w)+b)
+		self.y_predict = tf.sign(tf.matmul(self.x, w)+b)  # sign将输出限制在0, 1
 		self.sess.run(tf.global_variables_initializer())
 
 		for i in range(step):
