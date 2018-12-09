@@ -8,6 +8,7 @@ import tensorflow as tf
 import scipy.io as scio
 import numpy as np
 import random
+import matplotlib.pyplot as plt
 
 
 def loadData(path):
@@ -41,6 +42,33 @@ def neural_net(x):
 	return output_layer
 
 
+def display100Data(pics):
+	example_width = int(np.sqrt(pics.shape[1]))  # 每张图片的宽
+	example_hight = pics.shape[1] // example_width
+
+	display_rows = int(np.sqrt(pics.shape[0]))  # 每行显示几张图片
+	display_cols = pics.shape[0] // display_rows
+	# print(pics[45, :])
+	display_array = np.ones((1+display_rows*(example_hight+1), 1+display_cols*(example_width+1)))*200
+	curr_ex = 0  # 当前每行张数
+	for i in range(display_rows):
+		for j in range(display_cols):
+			if curr_ex >= pics.shape[0]:
+				break
+			max_val = np.max(np.abs(pics[curr_ex, :]))
+			display_array[1+j*(example_hight+1):(j+1)*(example_hight+1), 1+i*(example_width+1):(i+1)*(example_width+1)] = \
+				pics[curr_ex, :].reshape((20, 20)).transpose()/max_val*255
+			curr_ex += 1
+
+		if curr_ex >= pics.shape[0]:
+			break
+	plt.xticks([])
+	plt.yticks([])
+	plt.title("What the W1 look like from the NN Learning")
+	plt.imshow(display_array, cmap='gray')
+	plt.show()
+
+
 logits = neural_net(X)
 loss_op = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=logits, labels=Y))  # 交叉熵
 train_op = tf.train.AdamOptimizer(0.1).minimize(loss_op)
@@ -64,3 +92,5 @@ with tf.Session() as sess:
 		loss, acc = sess.run([loss_op, accuracy], feed_dict={X: train_x, Y: train_y})
 		print("\r训练{}次: 损失函数{:.4f} ｜ 精度{:.4f}".format(i, loss, acc), end="")  # 精度可达94%
 	print("\nTest Accuracy:%.4f%%" % (sess.run(accuracy, feed_dict={X: test_x, Y: test_y})))  # 精度89.5%
+	pics = sess.run(h1)
+	display100Data(pics.T)
