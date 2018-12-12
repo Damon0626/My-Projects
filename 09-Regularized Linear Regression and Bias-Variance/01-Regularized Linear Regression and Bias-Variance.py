@@ -99,7 +99,7 @@ class BiasAndVariance(object):
 		plt.show()
 
 	def plotPolyNomialLearningCurve(self):
-		error_train, error_val = self.learningCurve(self.x_poly, self.y, self.x_poly_val, self.yval, 1)
+		error_train, error_val = self.learningCurve(self.x_poly, self.y, self.x_poly_val, self.yval, 0)  # 0 1都试下
 		plt.xlim([0, 13])
 		plt.ylim([0, 100])
 		plt.plot([i for i in range(12)], error_train, 'r')
@@ -121,7 +121,6 @@ class BiasAndVariance(object):
 		plt.ylabel('Error')
 		plt.xlim([0, 13])
 		plt.show()
-
 
 	def polyFeatures(self, x, p):
 		x_ploy = np.zeros((np.size(x), p), np.float32)  # (12, 8)
@@ -165,7 +164,7 @@ class BiasAndVariance(object):
 
 		x_poly = np.hstack([np.ones((x_poly.shape[0], 1)), x_poly])
 		plt.plot(x, x_poly.dot(theta), '--', linewidth=2)
-		plt.title('Polynomial Regression Fit (lambda=1.00')
+		plt.title('Polynomial Regression Fit (lambda=0.00)')
 		plt.xlabel('Change in water level (x)')
 		plt.ylabel('Water flowing out of the dam (y)')
 		plt.show()
@@ -190,7 +189,7 @@ class BiasAndVariance(object):
 		self.plotTrainingLine(self.x_plus_one, self.y)
 		self.plotLinerRCurve()
 		self.ployXandY()
-		theta = self.trainLinearReg(self.x_poly, self.y, 1)
+		theta = self.trainLinearReg(self.x_poly, self.y, 0)  # 0和１都试下, 0下过拟合
 		plt.scatter(self.x, self.y, marker='x', color='r')
 		self.plotFit(self.x, self.mu, self.sigma, theta, 8)
 		self.plotPolyNomialLearningCurve()
