@@ -106,6 +106,6 @@ if __name__ == "__main__":
 	MCC.loadData(path)
 	MCC.display100Pics()
 	MCC.displayData()
-	MCC.logisticRegressionTest()  # 对给定的值进行测试
+	# MCC.logisticRegressionTest()  # 对给定的值进行测试
 	MCC.fmini()
 	MCC.predictOneVsAll()

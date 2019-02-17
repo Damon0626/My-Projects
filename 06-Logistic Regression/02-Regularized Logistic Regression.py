@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import scipy.optimize as op
 
+
 class RegularizedLR(object):
 	def __init__(self):
 		self.init_theta = None
@@ -62,7 +63,7 @@ class RegularizedLR(object):
 	def sigmoid(self, z):
 		return 1 / (1 + np.exp(-z))
 
-	def fminunc(self):  # costFunction需要几个参数就传几个,本例中只有一个theta,固x0,也可以利用args=()
+	def fminunc(self):  # costFunction需要几个参数就传几个,只有一个theta,则x0,参数多，利用args=()
 		optiTheta = op.minimize(fun=self.costFunctionReg, x0=np.zeros((28, )), args=(100, ), method='TNC', jac=self.gradient)
 		return optiTheta  # dict
 
@@ -94,6 +95,6 @@ if __name__ == "__main__":
 	RLR.reshapeData()
 	# RLR.plotData()
 	# print(RLR.costFunctionReg(np.zeros((28, 1))))
-	# print(RLR.gradient(np.zeros((28, )))[:5])
+	# print(RLR.gradient(np.zeros((28, )), 0)[:5])
 	# print(RLR.fminunc())
 	RLR.plotDecisionBoundary()
