@@ -47,5 +47,5 @@ if __name__ == "__main__":
 	compareImages(orin_gray, orin_gray, "Original vs. Original")
 	compareImages(orin_gray, changed_gray, "Orinal vs. Changed")
 	# image = cv2.imread('test.jpg')
-	# cv2.imwrite('img1.jpg', image[:, :400])
-	# cv2.imwrite('img2.jpg', image[:, 400::])
+	# cv2.imwrite('image01-0.jpg', image[:, :400])
+	# cv2.imwrite('image01-1.jpg', image[:, 400::])

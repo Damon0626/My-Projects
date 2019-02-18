@@ -8,9 +8,9 @@ from skimage.measure import compare_ssim as ssim
 import cv2
 import numpy as np
 
-imageA = cv2.imread('image02-0.png')
-imageB = cv2.imread('image02-1.png')
-grayA = cv2.cvtColor(imageA[:445], cv2.COLOR_BGR2GRAY)
+imageA = cv2.imread('image01-0.jpg')
+imageB = cv2.imread('image01-1.jpg')
+grayA = cv2.cvtColor(imageA, cv2.COLOR_BGR2GRAY)
 grayB = cv2.cvtColor(imageB, cv2.COLOR_BGR2GRAY)
 print(grayA.shape, grayB.shape)
 score, diff = ssim(grayA, grayB, full=True)
